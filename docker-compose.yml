@@ -77,3 +77,21 @@ services:
     stdin_open: true
     depends_on:
       - tracking-server
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+  
+  gpu_test:
+    container_name: gpu_test
+    image: nvidia/cuda:12.2.0-base-ubuntu22.04
+    command: nvidia-smi
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    tty: true
