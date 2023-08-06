@@ -1,4 +1,4 @@
-# MLflowTrackingServerWithVSCodeDevContainer
+# MLVSCodeDevcontainerWithMLflow
 
 ## 概要
 
@@ -32,8 +32,8 @@
 
 1. ターミナル等で以下実行
     ```
-    git clone https://github.com/iuill/MLflowTrackingServerWithVSCodeDevContainer.git
-    cd MLflowTrackingServerWithVSCodeDevContainer
+    git clone https://github.com/iuill/MLVSCodeDevcontainerWithMLflow.git
+    cd MLVSCodeDevcontainerWithMLflow
     cp .env.sample .env
     ```
 1. .envファイル内のHOST_IPを変更
