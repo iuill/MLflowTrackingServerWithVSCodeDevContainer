@@ -2,6 +2,7 @@
     "name": "app",
     "dockerComposeFile": ["../docker-compose.yml"],
     "service": "app",
+    "remoteUser": "vscode",
     "shutdownAction": "none",
     "workspaceFolder": "/workspace/app/",
     "extensions": [

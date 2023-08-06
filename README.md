@@ -6,7 +6,8 @@
 
 - 機械学習実行環境
     - Python3.11
-    - VSCode Devcontainer
+    - CUDA/cuDNN
+    - VSCode Devcontainer + common-utils
 - MLflow
 - DB
     - Postgres
@@ -38,7 +39,7 @@
 1. .envファイル内のHOST_IPを変更
 1. ターミナル等で以下実行
     ```
-    docker-compose up -d
+    docker-compose up -d --build
     ```
 1. VSCodeでフォルダを開く
 1. VSCode左下の `><` をクリックし `コンテナーで再度開く` を実行

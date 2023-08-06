@@ -68,8 +68,8 @@ services:
   app:
     container_name: app
     build:
-      context: ./app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./app/Dockerfile
     image: mlflow-python-app
     volumes:
       - .:/workspace:cached
@@ -86,8 +86,9 @@ services:
   
   gpu_test:
     container_name: gpu_test
-    image: nvidia/cuda:12.2.0-base-ubuntu22.04
-    command: nvidia-smi
+    # image: nvidia/cuda:12.2.0-base-ubuntu22.04
+    image: nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
+    #command: sh -c "which nvidia-smi && nvidia-smi"
     deploy:
       resources:
         reservations:
