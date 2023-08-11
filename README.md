@@ -5,7 +5,7 @@
 機械学習用Pythonコード開発のための関連コンテナ一式をまとめたもの。
 
 - 機械学習実行環境
-    - Python3.11
+    - Python3.10
     - CUDA/cuDNN
     - VSCode Devcontainer + common-utils
 - MLflow
