@@ -53,5 +53,5 @@
         }
     },
 
-    "postCreateCommand": "pip install --no-cache-dir -r /workspace/app/requirements.txt"
+    // "postCreateCommand": "pip install --no-cache-dir -r /workspace/app/requirements.txt"
 }

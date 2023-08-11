@@ -1,16 +1,19 @@
 # ---------------------------------------------------------------------------------------------
 # NOTE:
-# ベースイメージは、mcr.microsoft.com か nvidia か 各ディストリやPython公式の選択肢がある。
-# mcr.microsoft.com や 各ディストリの場合は、CUDA/cuDNNの導入が一苦労。
-# nvidia/cudaのレイヤを参考にすれば導入はできると思われるが、
+# ベースイメージは、mcr.microsoft.com/各ディストリ/Python公式等の選択肢がある。
 # いずれのベースイメージを使うにせよ、CUDA/cuDNNの導入なり、
 # Pythonやvscode common-utilsなりを個別に入れていくことになる。
-# さらにpycaret公式のDockerイメージもある。
-# このDockerfileではnvidia/cudaをベースとするアプローチを採用する。
+# またcuMLやcuDFを使うのであれば、RAPIDS公式のDockerイメージを使う選択肢もある。
+# NOTE:
+# RAPIDS公式develを使用した場合、root以外のユーザにするとcuMLなどが見えなくなる。
+# またインストール場所がconda配下になっている。
 # ---------------------------------------------------------------------------------------------
 
-# nvidia/cudaはdevelにしかnvccが無いらしいのでdevelにする
-FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
+# ベースイメージ
+# ref: https://docs.rapids.ai/install
+# Note:
+#   CUDA版LightGBMのビルドでnvccが必要なので、Development Imageを選択（サイズが巨大なので注意）
+FROM rapidsai/rapidsai-core-dev:23.06-cuda11.8-devel-ubuntu22.04-py3.10
 
 # 高速化のためパッケージのリポジトリを日本にする
 RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
@@ -23,7 +26,7 @@ RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.l
 # Options for setup script
 ARG INSTALL_ZSH="false"
 ARG UPGRADE_PACKAGES="true"
-ARG USERNAME=vscode
+# ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
@@ -58,26 +61,6 @@ RUN apt update \
 
 
 # ---------------------------------------------------
-# python
-# NOTE: PyCaret3.0.4がpython3.11非対応のため、3.10のままにする
-# ---------------------------------------------------
-RUN apt update && \
-    DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends \
-    software-properties-common \
-    && apt autoremove -y \
-    && apt clean -y \
-    && rm -rf /var/lib/apt/lists/*
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt update && \
-    DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends \
-    # python3.11 \
-    python3-pip
-
-# RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1 && \
-#     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
-
-
-# ---------------------------------------------------
 # pipを23.2.1以降にする
 # lightGBM4.0.0をCUDA用にビルドするのに必要
 # ※pipのバージョンが23.1.2だとビルドが途中で止まる
@@ -86,11 +69,9 @@ RUN pip install --upgrade pip==23.2.1 setuptools==68.0.0
 
 
 # ---------------------------------------------------
-# RAPIDS
-# ref: https://docs.rapids.ai/install
-# NOTE: CUDAのバージョンが微妙に一致していないがとりあえず試してみる
+# jupyter notebooks一旦削除する
 # ---------------------------------------------------
-RUN pip install cudf-cu12 cuml-cu12 --extra-index-url=https://pypi.nvidia.com
+RUN pip freeze | grep -E "^jupyter[^ =]*" -o | xargs pip uninstall -y
 
 
 # ---------------------------------------------------
@@ -102,6 +83,7 @@ RUN pip install pycaret[full]==3.0.4
 # ---------------------------------------------------
 # lightGBM
 # NOTE: pycaretインストール時に一緒に入るがCUDA非対応なので一度アンインストールする
+# NOTE: WheelでCUDA版をビルドするがその際にnvccが必要
 # ---------------------------------------------------
 RUN pip uninstall -y lightgbm && \
     pip install lightgbm==4.0.0 --no-binary lightgbm --no-cache lightgbm --config-settings=cmake.define.USE_CUDA=ON
