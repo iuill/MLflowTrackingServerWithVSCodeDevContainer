@@ -1,2 +1,5 @@
 .env
 dat/*/
+app/catboost_info/
+app_h2o/h2o-*/
+

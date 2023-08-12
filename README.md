@@ -41,9 +41,20 @@
     ```
     docker-compose up -d --build
     ```
+
+### VSCodeで複数のコンテナに接続
+
+通常の `><` をクリックし `コンテナーで再度開く` を実行から行う操作と異なるので注意。
+
 1. VSCodeでフォルダを開く
-1. VSCode左下の `><` をクリックし `コンテナーで再度開く` を実行
-1. VSCode左下が `開発コンテナー: app` になることを確認
+1. [F1]キー -> [`Dev Containers: Open Folder in Container`] -> [コンテナのフォルダを指定]
+1. さらに別のコンテナに接続する場合は `Shift+Ctrl+N` を押して新規ウィンドウを立ち上げ、F1から同様の操作を実行
+
+#### 参考
+
+- VSCode Docs: Connect to multiple containers
+    - https://code.visualstudio.com/remote/advancedcontainers/connect-multiple-containers
+
 
 ## ライセンス
 

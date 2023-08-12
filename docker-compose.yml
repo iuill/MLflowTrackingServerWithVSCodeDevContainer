@@ -70,11 +70,32 @@ services:
     build:
       context: .
       dockerfile: ./app/Dockerfile
-    image: mlflow-python-app
+    image: python-pycaret
     volumes:
       - .:/workspace:cached
     tty: true
     stdin_open: true
+    depends_on:
+      - tracking-server
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+
+  app_h2o:
+    container_name: app_h2o
+    build:
+      context: .
+      dockerfile: ./app_h2o/Dockerfile
+    image: python-h2o
+    volumes:
+      - .:/workspace:cached
+    tty: true
+    stdin_open: true
+    ports:
+      - "54321:54321"
     depends_on:
       - tracking-server
     deploy:

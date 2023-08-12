@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  app:
+    volumes:
+      - .:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+  app_h2o:
+    volumes:
+      - .:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+ 

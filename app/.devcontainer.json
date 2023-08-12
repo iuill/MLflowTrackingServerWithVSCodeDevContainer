@@ -1,6 +1,9 @@
 {
     "name": "app",
-    "dockerComposeFile": ["../docker-compose.yml"],
+    "dockerComposeFile": [
+        "../docker-compose.yml",
+        "../.devcontainer/devcontainer.yml",
+    ],
     "service": "app",
     "remoteUser": "vscode",
     "shutdownAction": "none",
