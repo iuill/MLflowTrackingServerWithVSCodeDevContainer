@@ -1,13 +1,13 @@
 {
-    "name": "app_h2o",
+    "name": "dev_pycaret",
     "dockerComposeFile": [
         "../docker-compose.yml",
         "../.devcontainer/devcontainer.yml",
     ],
-    "service": "app_h2o",
+    "service": "dev_pycaret",
     "remoteUser": "vscode",
     "shutdownAction": "none",
-    "workspaceFolder": "/workspace/app_h2o/",
+    "workspaceFolder": "/workspace/dev_pycaret/",
     "extensions": [
         "ms-python.python",
         "ms-python.flake8",
@@ -56,5 +56,5 @@
         }
     },
 
-    // "postCreateCommand": "pip install --no-cache-dir -r /workspace/app/requirements.txt"
+    // "postCreateCommand": "pip install --no-cache-dir -r /workspace/dev_pycaret/requirements.txt"
 }

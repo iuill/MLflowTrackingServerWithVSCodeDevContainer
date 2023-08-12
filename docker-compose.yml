@@ -65,11 +65,11 @@ services:
       - db-server
       - ftp-server
 
-  app:
-    container_name: app
+  dev_pycaret:
+    container_name: dev_pycaret
     build:
       context: .
-      dockerfile: ./app/Dockerfile
+      dockerfile: ./dev_pycaret/Dockerfile
     image: python-pycaret
     volumes:
       - .:/workspace:cached
@@ -84,11 +84,11 @@ services:
             - driver: nvidia
               capabilities: [gpu]
 
-  app_h2o:
-    container_name: app_h2o
+  dev_h2o:
+    container_name: dev_h2o
     build:
       context: .
-      dockerfile: ./app_h2o/Dockerfile
+      dockerfile: ./dev_h2o/Dockerfile
     image: python-h2o
     volumes:
       - .:/workspace:cached
@@ -96,6 +96,25 @@ services:
     stdin_open: true
     ports:
       - "54321:54321"
+    depends_on:
+      - tracking-server
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+
+  dev_autogluon:
+    container_name: dev_autogluon
+    build:
+      context: .
+      dockerfile: ./dev_autogluon/Dockerfile
+    image: python-autogluon
+    volumes:
+      - .:/workspace:cached
+    tty: true
+    stdin_open: true
     depends_on:
       - tracking-server
     deploy:

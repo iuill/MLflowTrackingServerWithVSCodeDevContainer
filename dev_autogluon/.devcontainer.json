@@ -1,13 +1,13 @@
 {
-    "name": "app",
+    "name": "dev_autogluon",
     "dockerComposeFile": [
         "../docker-compose.yml",
         "../.devcontainer/devcontainer.yml",
     ],
-    "service": "app",
+    "service": "dev_autogluon",
     "remoteUser": "vscode",
     "shutdownAction": "none",
-    "workspaceFolder": "/workspace/app/",
+    "workspaceFolder": "/workspace/dev_autogluon/",
     "extensions": [
         "ms-python.python",
         "ms-python.flake8",
@@ -56,5 +56,6 @@
         }
     },
 
-    // "postCreateCommand": "pip install --no-cache-dir -r /workspace/app/requirements.txt"
+    // "postCreateCommand": "pip install --no-cache-dir -r /workspace/dev_pycaret/requirements.txt"
+    "postCreateCommand": "java -jar /workspace/dev_h2o/h2o-3.42.0.2/h2o.jar -ip localhost"
 }

@@ -1,11 +1,14 @@
 version: '3.9'
 services:
-  app:
+  dev_pycaret:
     volumes:
       - .:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
-  app_h2o:
+  dev_h2o:
     volumes:
       - .:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
- 
+  dev_autogluon:
+    volumes:
+      - .:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"

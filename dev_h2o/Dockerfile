@@ -119,5 +119,4 @@ ENV TZ=Asia/Tokyo
 # ---------------------------------------------------
 # デフォルト実行
 # ---------------------------------------------------
-#CMD [ "java", "-jar", "/workspace/app_h2o/h2o-3.42.0.2/h2o.jar", "-ip", "localhost" ]
-CMD [ "java", "-jar", "/workspaces/app_h2o/h2o-3.42.0.2/h2o.jar", "-ip", "localhost" ]
+# CMD [ "java", "-jar", "/workspace/dev_h2o/h2o-3.42.0.2/h2o.jar", "-ip", "localhost" ]
