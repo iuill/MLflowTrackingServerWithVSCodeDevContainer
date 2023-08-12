@@ -30,6 +30,7 @@
 
 ## 使い方
 
+### 事前準備
 1. ターミナル等で以下実行
     ```
     git clone https://github.com/iuill/MLVSCodeDevcontainerWithMLflow.git
@@ -39,6 +40,7 @@
 1. .envファイル内のHOST_IPを変更
 1. ターミナル等で以下実行
     ```
+    powershel .\setup.ps1
     docker-compose up -d --build
     ```
 
