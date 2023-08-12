@@ -65,6 +65,19 @@ services:
       - db-server
       - ftp-server
 
+  my_app_base:
+    container_name: my_app_base
+    build:
+      context: .
+      dockerfile: ./base.Dockerfile
+    image: my_app_base
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+
   dev_pycaret:
     container_name: dev_pycaret
     build:
@@ -77,6 +90,7 @@ services:
     stdin_open: true
     depends_on:
       - tracking-server
+      - my_app_base
     deploy:
       resources:
         reservations:
@@ -98,6 +112,7 @@ services:
       - "54321:54321"
     depends_on:
       - tracking-server
+      - my_app_base
     deploy:
       resources:
         reservations:
@@ -117,6 +132,7 @@ services:
     stdin_open: true
     depends_on:
       - tracking-server
+      - my_app_base
     deploy:
       resources:
         reservations:

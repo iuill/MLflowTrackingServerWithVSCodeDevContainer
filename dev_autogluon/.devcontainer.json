@@ -57,5 +57,4 @@
     },
 
     // "postCreateCommand": "pip install --no-cache-dir -r /workspace/dev_pycaret/requirements.txt"
-    "postCreateCommand": "java -jar /workspace/dev_h2o/h2o-3.42.0.2/h2o.jar -ip localhost"
 }
