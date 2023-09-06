@@ -31,6 +31,7 @@
 ## 使い方
 
 ### 事前準備
+
 1. ターミナル等で以下実行
     ```
     git clone https://github.com/iuill/MLVSCodeDevcontainerWithMLflow.git
@@ -38,19 +39,26 @@
     cp .env.sample .env
     ```
 1. .envファイル内のHOST_IPやCOMPOSE_PROJECT_NAMEを変更
-1. ターミナル等で以下実行
+1. ターミナル等で以下実行し、正常終了することを確認する
     ```
     powershell .\setup.ps1
     docker-compose up -d --build
     ```
 
+
 ### VSCodeで複数のコンテナに接続
 
-通常の `><` をクリックし `コンテナーで再度開く` を実行から行う操作と異なるので注意。
+VSCode以外の方法でコンテナが起動させている場合は一旦停止する。  
+VSCodeから以下操作を行う。通常手順と異なるので注意。
 
 1. VSCodeでフォルダを開く
 1. [F1]キー -> [`Dev Containers: Open Folder in Container`] -> [コンテナのフォルダを指定]
 1. さらに別のコンテナに接続する場合は `Shift+Ctrl+N` を押して新規ウィンドウを立ち上げ、F1から同様の操作を実行
+
+#### NOTE:
+
+通常手順:  
+`><` をクリックし `コンテナーで再度開く` を実行から行う操作
 
 #### 参考
 
