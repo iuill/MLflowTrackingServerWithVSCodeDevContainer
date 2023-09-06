@@ -1,5 +1,9 @@
 version: '3.9'
 services:
+  eda:
+    volumes:
+      - .:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
   dev_pycaret:
     volumes:
       - .:/workspace:cached
