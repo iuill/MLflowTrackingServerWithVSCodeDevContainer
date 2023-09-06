@@ -40,7 +40,7 @@
 1. .envファイル内のHOST_IPを変更
 1. ターミナル等で以下実行
     ```
-    powershel .\setup.ps1
+    powershell .\setup.ps1
     docker-compose up -d --build
     ```
 
