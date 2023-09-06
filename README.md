@@ -37,7 +37,7 @@
     cd MLVSCodeDevcontainerWithMLflow
     cp .env.sample .env
     ```
-1. .envファイル内のHOST_IPを変更
+1. .envファイル内のHOST_IPやCOMPOSE_PROJECT_NAMEを変更
 1. ターミナル等で以下実行
     ```
     powershell .\setup.ps1
